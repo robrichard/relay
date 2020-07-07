@@ -125,6 +125,7 @@ impl<'s> ConnectionTransform<'s> {
             for arg in &connection_directive.arguments {
                 if arg.name.item == DEFER_STREAM_CONSTANTS.if_arg
                     || arg.name.item == DEFER_STREAM_CONSTANTS.initial_count_arg
+                    || arg.name.item == DEFER_STREAM_CONSTANTS.initial_count_arg_oss
                     || arg.name.item == DEFER_STREAM_CONSTANTS.use_customized_batch_arg
                 {
                     arguments.push(arg.clone());

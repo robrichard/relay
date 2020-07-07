@@ -58,6 +58,8 @@ impl<'a> StreamDirective<'a> {
                 label_arg = Some(arg);
             } else if arg.name.item == DEFER_STREAM_CONSTANTS.initial_count_arg {
                 initial_count_arg = Some(arg);
+            } else if arg.name.item == DEFER_STREAM_CONSTANTS.initial_count_arg_oss {
+                initial_count_arg = Some(arg);
             } else if arg.name.item == DEFER_STREAM_CONSTANTS.use_customized_batch_arg {
                 use_customized_batch_arg = Some(arg);
             } else {

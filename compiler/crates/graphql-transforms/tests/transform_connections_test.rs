@@ -76,6 +76,13 @@ fn stream_connection() {
 }
 
 #[test]
+fn stream_connection_oss() {
+    let input = include_str!("transform_connections/fixtures/stream-connection-oss.graphql");
+    let expected = include_str!("transform_connections/fixtures/stream-connection-oss.expected");
+    test_fixture(transform_fixture, "stream-connection-oss.graphql", "transform_connections/fixtures/stream-connection-oss.expected", input, expected);
+}
+
+#[test]
 fn stream_connection_no_label() {
     let input = include_str!("transform_connections/fixtures/stream-connection-no-label.graphql");
     let expected = include_str!("transform_connections/fixtures/stream-connection-no-label.expected");
