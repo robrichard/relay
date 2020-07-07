@@ -165,9 +165,9 @@ function transformDeferStreamNode<T: Defer | Stream>(
   }
   if (nextNode.initialCount) {
     //$FlowFixMe nextNode is uniquely owned
-    nextNode.initialCount = transformValue(
+    nextNode.initialCount.value = transformValue(
       scope,
-      nextNode.initialCount,
+      nextNode.initialCount.value,
       errorContext,
     );
   }

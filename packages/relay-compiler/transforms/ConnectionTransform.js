@@ -109,7 +109,8 @@ const SCHEMA_EXTENSION = `
     key: String!
     filters: [String]
     handler: String
-    initial_count: Int!
+    initial_count: Int
+    initialCount: Int
     if: Boolean = true
     use_customized_batch: Boolean = false
     dynamicKey_UNSTABLE: String
@@ -294,7 +295,7 @@ function buildConnectionArguments(
   let stream = null;
   if (connectionDirective.name === STREAM_CONNECTION) {
     const initialCountArg = connectionDirective.args.find(
-      arg => arg.name === 'initial_count',
+      arg => arg.name === 'initial_count' || arg.name === 'initialCount',
     );
     const useCustomizedBatchArg = connectionDirective.args.find(
       arg => arg.name === 'use_customized_batch',

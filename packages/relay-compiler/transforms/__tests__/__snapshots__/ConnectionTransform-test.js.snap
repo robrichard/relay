@@ -1137,6 +1137,82 @@ query NodeQuery(
 }
 `;
 
+exports[`matches expected output: stream-connection-oss.graphql 1`] = `
+~~~~~~~~~~ INPUT ~~~~~~~~~~
+query NodeQuery($id: ID!) {
+  node(id: $id) {
+    id
+    ... on Story {
+      comments(first: 10)
+        @stream_connection(key: "NodeQuery_comments", initialCount: 0) {
+        edges {
+          node {
+            actor {
+              name
+            }
+          }
+        }
+        pageInfo {
+          endCursor
+          hasNextPage
+        }
+      }
+    }
+  }
+}
+
+~~~~~~~~~~ OUTPUT ~~~~~~~~~~
+query NodeQuery(
+  $id: ID!
+) {
+  node(id: $id) {
+    id
+    ... on Story {
+      comments(first: 10) @__clientField(handle: "connection", key: "NodeQuery_comments") {
+        edges @stream(initialCount: 0, label: "NodeQuery_comments") {
+          node {
+            actor {
+              name
+            }
+          }
+          ... on CommentsEdge {
+            cursor
+            node {
+              __typename
+            }
+          }
+        }
+        ... @defer(label: "NodeQuery$defer$NodeQuery_comments$pageInfo") {
+          pageInfo {
+            endCursor
+            hasNextPage
+            ... on PageInfo {
+              endCursor
+              hasNextPage
+            }
+          }
+        }
+      }
+    }
+  }
+}
+# Metadata:
+{
+  "connection": [
+    {
+      "count": null,
+      "cursor": null,
+      "direction": "forward",
+      "path": [
+        "node",
+        "comments"
+      ],
+      "stream": true
+    }
+  ]
+}
+`;
+
 exports[`matches expected output: stream-connection-with-aliased-edges.invalid.graphql 1`] = `
 ~~~~~~~~~~ INPUT ~~~~~~~~~~
 # expected-to-throw

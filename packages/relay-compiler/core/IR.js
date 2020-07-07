@@ -109,7 +109,7 @@ export type Stream = {|
   +selections: $ReadOnlyArray<Selection>,
   +label: string,
   +if: ArgumentValue | null,
-  +initialCount: ArgumentValue,
+  +initialCount: Argument,
   +useCustomizedBatch: ArgumentValue | null,
 |};
 

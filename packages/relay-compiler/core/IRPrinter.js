@@ -197,9 +197,9 @@ function printSelection(
       streamStr += `, if: ${printValue(schema, selection.if, null) ?? ''}`;
     }
     if (selection.initialCount !== null) {
-      streamStr += `, initial_count: ${printValue(
+      streamStr += `, ${selection.initialCount.name}: ${printValue(
         schema,
-        selection.initialCount,
+        selection.initialCount.value,
         null,
       ) ?? ''}`;
     }

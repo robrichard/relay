@@ -118,11 +118,11 @@ function visitLinkedField(
     return transformedField;
   }
   const initialCount = streamDirective.args.find(
-    arg => arg.name === 'initial_count',
+    arg => arg.name === 'initial_count' || arg.name === 'initialCount',
   );
   if (initialCount == null) {
     throw createUserError(
-      "Invalid use of @stream, the 'initial_count' argument is required.",
+      "Invalid use of @stream, the 'initial_count' or 'initialCount' argument is required.",
       [streamDirective.loc],
     );
   }
@@ -136,7 +136,7 @@ function visitLinkedField(
   state.recordLabel(transformedLabel, streamDirective);
   return {
     if: ifArg?.value ?? null,
-    initialCount: initialCount.value,
+    initialCount: initialCount,
     useCustomizedBatch: useCustomizedBatch?.value ?? null,
     kind: 'Stream',
     label: transformedLabel,
